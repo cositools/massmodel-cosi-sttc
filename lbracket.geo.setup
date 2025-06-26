@@ -1,0 +1,46 @@
+SurroundingSphere 150 120 0.0 0.0 150
+Include Materials.geo
+ShowSurroundingSphere 0
+
+Volume WorldVolume
+WorldVolume.Material Vacuum
+WorldVolume.Visibility 1 
+WorldVolume.Color 0
+WorldVolume.Shape BRIK 1000. 1000. 1000.
+WorldVolume.Mother 0
+
+#Include cold_finger_lblock.geo
+#LBracket.Position 0 0 0
+#LBracket.Mother WorldVolume
+
+#Include cold_finger_assembly.geo
+#ColdFingerAssem.Position 0 0 0
+#ColdFingerAssem.Mother WorldVolume
+
+#Include stand_base.geo
+#StandBase.Position 0 0 0
+#StandBase.Mother WorldVolume
+
+#Include chamber.geo
+#Chamber.Position 0.0 0.0 0.0
+#Chamber.Mother WorldVolume
+
+#Include getter_assembly.geo
+#GetterAssem.Position 0.0 0.0 0.0
+#GetterAssem.Mother WorldVolume
+
+#Include ir_shield_left.geo
+#IRShieldLeft.Position 0.0 0.0 0.0
+#IRShieldLeft.Mother WorldVolume
+
+#Include ir_shield_right.geo
+#IRShieldRight.Position 0.0 0.0 0.0
+#IRShieldRight.Mother WorldVolume
+
+#Include cold_finger_clamp.geo
+#ColdFingerClamp.Position 0.0 0.0 0.0
+#ColdFingerClamp.Mother WorldVolume
+
+Include Dewar.geo
+Dewar.Position 0.0 0.0 0.0
+Dewar.Mother WorldVolume

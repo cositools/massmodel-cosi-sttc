@@ -1,0 +1,37 @@
+# Example run for Cosima
+# A Crab-like source in the zenith on cosmic and albedo photon background
+# point source for the AC side of the cryostat
+
+# Global parameters
+Version         1
+Geometry        COSI_STTC_75.geo.setup
+
+# Physics list
+PhysicsListEM               LivermorePol
+DecayMode                   ActivationDelayedDecay
+
+# Output formats
+StoreSimulationInfo         all
+
+# Run & source parameters
+Run SpaceSim
+SpaceSim.FileName           STTC_AC
+SpaceSim.Triggers           10000000
+
+SpaceSim.ActivationSources Co57Decay.dat
+
+
+
+# Attention: Concerning the lower energy band:
+# The analysis is planned to be performed above 1 MeV.
+# Therfore you set the lower energy limit for the simulation, well below this limit, 
+# to avoid problems due to energy resolution limitations
+
+#SpaceSim.Source Crab
+#Crab.ParticleType           1
+#Crab.Beam                   FarFieldPointSource 90 0
+#Crab.Beam                   PointSource {-22.86+16.52+7.6195} {17.145-3.175} {-16.526+2*.3175+12.7}
+#Crab.Spectrum               Mono 122
+#Crab.Flux                   1
+
+

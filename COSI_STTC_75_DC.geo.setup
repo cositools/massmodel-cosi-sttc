@@ -1,0 +1,186 @@
+SurroundingSphere 75 0 0.0 0.0 75
+Include Materials.geo
+ShowSurroundingSphere 1
+
+
+Material Co57
+Co57.Density 8.9
+Co57.Component Co 1.0
+
+
+Volume WorldVolume
+WorldVolume.Material Vacuum
+#WorldVolume.Visibility 1 
+#WorldVolume.Color 10
+WorldVolume.Shape Sphere 0.0 200. 0.0 180.0 0.0 360.0
+WorldVolume.Mother 0
+WorldVolume.Visibility 1 
+
+Include COSISMEX.GlobalDimensions.geo
+#Include COSISMEX.mat
+
+Volume SourceCo57
+SourceCo57.Material Co57
+SourceCo57.Visibility 0
+SourceCo57.Color 5
+SourceCo57.Shape SPHE 0.0 .1 0.0 180.0 0.0 360.0
+SourceCo57.Position {-22.86+16.52+7.6195} {-17.145+3.175} {-16.526+2*.3175+12.7}
+SourceCo57.Mother WorldVolume
+
+Include chamber.geo
+Chamber.Position -0.001 0.0 0.0
+Chamber.Mother WorldVolume
+
+Include stand_base.geo
+StandBase.Position 7.6195 0.0 -16.526
+StandBase.Mother WorldVolume
+
+#DC side source position
+#Volume SourceStand
+#SourceStand.Shape BRIK 0.5 0.5 0.5
+#SourceStand.Material Aluminium
+#SourceStand.Position {-22.86+16.52+7.6195+.5} {-17.145+1.905+.5} {-16.526+2*.3175+12.7+.5}
+#Below is the AC side source position but 12.7 meeds to be added to the Z position to account for the source stand height
+#SourceStand.Position {-22.86+16.52+7.6195+.5} {17.145-3.175-.5} {-16.526+2*.3175}
+#SourceStand.Color 7
+#SourceStand.Mother WorldVolume
+#SourceStand.Visibility 1
+
+Include cold_finger_assembly.geo
+ColdFingerAssem.Position 23.5575 0.0 8.1157
+ColdFingerAssem.Rotation 0.0 180.0 0.0
+ColdFingerAssem.Mother WorldVolume
+
+Include cold_finger_lblock.geo
+LBracket.Rotation -90.0 0.0 0.0
+LBracket.Position 0.5625 0.0 0.1585
+LBracket.Mother WorldVolume
+
+Include COSISMEX.Ge.AJ.geo
+SingleDetector.Rotation -90.0 0.0 0.0
+SingleDetector.Position 1.3225 0.0 {DetectorHalfHeight+.9-1.2585+.0186391+0.127861}
+SingleDetector.Mother WorldVolume
+
+Include cold_finger_clamp.geo
+ColdFingerClamp.Position 8.4325 -0.65585 0.1585
+ColdFingerClamp.Mother WorldVolume
+
+Include getter_assembly.geo
+GetterAssem.Rotation 180.0 0.0 0.0
+#GetterAssem.Position 0.0 0.0 -5.9885
+GetterAssem.Position 0.5625 0.0 -6.047
+GetterAssem.Mother WorldVolume
+
+Include ir_shield_left.geo
+#IRShieldLeft.Position -.922 -1.956 0.3435
+IRShieldLeft.Position -.922 -1.956 0.3735
+IRShieldLeft.Mother WorldVolume
+
+Include ir_shield_right.geo
+IRShieldRight.Rotation 180.0 0.0 0.0
+IRShieldRight.Position -.922 1.956 .2720
+#IRShieldRight.Position -.922 1.956 0.2845
+#IRShieldRight.Position -.922 1.956 0.338
+IRShieldRight.Mother WorldVolume
+
+# Now going to add in the side walls
+Volume SideWall
+SideWall.Material Alu6061
+SideWall.Visibility 1
+SideWall.Color 8
+SideWall.Shape BRIK 14.2875 0.254 9.8425
+
+SideWall.Copy SideWallRight
+SideWallRight.Position 0.0 3.1115 0.0
+SideWallRight.Visibility 0
+SideWallRight.Mother WorldVolume
+
+SideWall.Copy SideWallLeft
+SideWallLeft.Position 0.0 -3.1115 0.0
+SideWallLeft.Mother WorldVolume
+
+# Finally Include the dewar
+Include dewar.geo
+Dewar.Position 23.5575 0.0 41.3003
+Dewar.Mother WorldVolume
+
+
+
+#------------------------------------------------------------
+# Detector and trigger section:
+
+
+MDStrip3D                  ActiveDetector
+
+ActiveDetector.DetectorVolume      D1_GeWafer
+ActiveDetector.SensitiveVolume     D1_GeWafer
+
+#ActiveDetector.StructuralPitch     0.0   0.0    CryoTotalHeight
+#ActiveDetector.StructuralOffset    0.0   0.0    0.0
+
+ActiveDetector.Offset              0.0   0.0
+ActiveDetector.StripNumber         64    64
+
+ActiveDetector.NoiseThreshold      15
+ActiveDetector.TriggerThreshold    30
+
+ActiveDetector.DepthResolution     10  0.02
+ActiveDetector.DepthResolution     100  0.02
+ActiveDetector.DepthResolution     1000  0.02
+
+ActiveDetector.EnergyResolution Gaus 10      10        0.417
+ActiveDetector.EnergyResolution Gaus 20      20        0.425
+ActiveDetector.EnergyResolution Gaus 50      50        0.4375
+ActiveDetector.EnergyResolution Gaus 100     100       0.454
+ActiveDetector.EnergyResolution Gaus 200     200       0.492
+ActiveDetector.EnergyResolution Gaus 500     500       0.5875
+ActiveDetector.EnergyResolution Gaus 1000    1000      0.7217
+ActiveDetector.EnergyResolution Gaus 2000    2000      0.9317
+ActiveDetector.EnergyResolution Gaus 5000    5000      1.3819
+ActiveDetector.EnergyResolution Gaus 10000   10000     1.9094
+ActiveDetector.EnergyResolution Gaus 100000  100000    5.907
+
+ActiveDetector.FailureRate 0.0
+
+#ActiveDetector.Named D1
+#D1.Assign 0.0  0.0  {  1.5*CryoTotalHeight }
+#ActiveDetector.Named D2
+#D2.Assign 0.0  0.0  {  0.5*CryoTotalHeight }
+#ActiveDetector.Named D3
+#D3.Assign  0.0  0.0  { -0.5*CryoTotalHeight }
+#ActiveDetector.Named D4
+#D4.Assign 0.0  0.0  { -1.5*CryoTotalHeight }
+
+
+Simple GuardRingDetector
+
+GuardRingDetector.DetectorVolume      GeWaferGuardRing
+GuardRingDetector.SensitiveVolume     GeWaferGuardRing
+
+GuardRingDetector.TriggerThreshold      40
+GuardRingDetector.NoiseThresholdEqualsTriggerThreshold true
+
+GuardRingDetector.EnergyResolution Gaus 10      10        3
+GuardRingDetector.EnergyResolution Gaus 20      20        3
+GuardRingDetector.EnergyResolution Gaus 50      50        3
+GuardRingDetector.EnergyResolution Gaus 100     100       3
+GuardRingDetector.EnergyResolution Gaus 200     200       3
+GuardRingDetector.EnergyResolution Gaus 500     500       3
+GuardRingDetector.EnergyResolution Gaus 1000    1000      3
+GuardRingDetector.EnergyResolution Gaus 2000    2000      3
+GuardRingDetector.EnergyResolution Gaus 5000    5000      3
+
+
+
+// Trigger: at least one hit in one Germanium detector
+Trigger ActiveDetectorTrigger
+ActiveDetectorTrigger.Veto false
+ActiveDetectorTrigger.TriggerByChannel true
+ActiveDetectorTrigger.Detector ActiveDetector 1
+
+Trigger GuardRingVeto
+GuardRingVeto.Veto true
+GuardRingVeto.TriggerByChannel true
+GuardRingVeto.Detector GuardRingDetector 1
+
+
