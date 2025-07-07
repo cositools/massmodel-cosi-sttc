@@ -1,0 +1,16 @@
+
+Material Co57
+Co57.Density 8.9
+Co57.Component Co 1.0
+
+Constant DetectorHalfHeight {1.58/2}
+
+#Volume SourceCo57
+#SourceCo57.Material Co57
+#SourceCo57.Visibility 0
+#SourceCo57.Color 5
+#SourceCo57.Shape SPHE 0.0 .1 0.0 180.0 0.0 360.0
+#SourceCo57.Position ### REDO ###
+#SourceCo57.Mother WorldVolume
+
+Include COSI_STTC.geo.setup
