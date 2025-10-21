@@ -1,0 +1,4 @@
+
+Constant DetectorHalfHeight {1.612/2}
+
+Include COSI_STTC.geo.setup
