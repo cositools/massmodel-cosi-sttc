@@ -94,40 +94,37 @@ Dewar.Mother LabVolume
 # Detector and trigger section:
 
 
-MDStrip3D                  ActiveDetector
-ActiveDetector.Named GeD_0
+MDStrip3D                  GeD_0
 
+GeD_0.DetectorVolume      D1_GeWafer
+GeD_0.SensitiveVolume     D1_GeWafer
 
-ActiveDetector.DetectorVolume      D1_GeWafer
-ActiveDetector.SensitiveVolume     D1_GeWafer
+#GeD_0.StructuralPitch     0.0   0.0    CryoTotalHeight
+#GeD_0.StructuralOffset    0.0   0.0    0.0
 
-#ActiveDetector.StructuralPitch     0.0   0.0    CryoTotalHeight
-#ActiveDetector.StructuralOffset    0.0   0.0    0.0
+GeD_0.Offset              0.0   0.0
+GeD_0.StripNumber         64    64
 
-ActiveDetector.Offset              0.0   0.0
-ActiveDetector.StripNumber         64    64
+GeD_0.NoiseThreshold      15
+GeD_0.TriggerThreshold    30
 
-ActiveDetector.NoiseThreshold      15
-ActiveDetector.TriggerThreshold    30
+GeD_0.DepthResolution     10  0.02
+GeD_0.DepthResolution     100  0.02
+GeD_0.DepthResolution     1000  0.02
 
-ActiveDetector.DepthResolution     10  0.02
-ActiveDetector.DepthResolution     100  0.02
-ActiveDetector.DepthResolution     1000  0.02
+GeD_0.EnergyResolution Gaus 10      10        0.417
+GeD_0.EnergyResolution Gaus 20      20        0.425
+GeD_0.EnergyResolution Gaus 50      50        0.4375
+GeD_0.EnergyResolution Gaus 100     100       0.454
+GeD_0.EnergyResolution Gaus 200     200       0.492
+GeD_0.EnergyResolution Gaus 500     500       0.5875
+GeD_0.EnergyResolution Gaus 1000    1000      0.7217
+GeD_0.EnergyResolution Gaus 2000    2000      0.9317
+GeD_0.EnergyResolution Gaus 5000    5000      1.3819
+GeD_0.EnergyResolution Gaus 10000   10000     1.9094
+GeD_0.EnergyResolution Gaus 100000  100000    5.907
 
-ActiveDetector.EnergyResolution Gaus 10      10        0.417
-ActiveDetector.EnergyResolution Gaus 20      20        0.425
-ActiveDetector.EnergyResolution Gaus 50      50        0.4375
-ActiveDetector.EnergyResolution Gaus 100     100       0.454
-ActiveDetector.EnergyResolution Gaus 200     200       0.492
-ActiveDetector.EnergyResolution Gaus 500     500       0.5875
-ActiveDetector.EnergyResolution Gaus 1000    1000      0.7217
-ActiveDetector.EnergyResolution Gaus 2000    2000      0.9317
-ActiveDetector.EnergyResolution Gaus 5000    5000      1.3819
-ActiveDetector.EnergyResolution Gaus 10000   10000     1.9094
-ActiveDetector.EnergyResolution Gaus 100000  100000    5.907
-
-ActiveDetector.FailureRate 0.0
-
+GeD_0.FailureRate 0.0
 
 
 
@@ -152,10 +149,10 @@ GuardRingDetector.EnergyResolution Gaus 5000    5000      3
 
 
 // Trigger: at least one hit in one Germanium detector
-Trigger ActiveDetectorTrigger
-ActiveDetectorTrigger.Veto false
-ActiveDetectorTrigger.TriggerByChannel true
-ActiveDetectorTrigger.Detector ActiveDetector 1
+Trigger GeD_0Trigger
+GeD_0Trigger.Veto false
+GeD_0Trigger.TriggerByChannel true
+GeD_0Trigger.Detector GeD_0 1
 
 Trigger GuardRingVeto
 GuardRingVeto.Veto true
