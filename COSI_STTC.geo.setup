@@ -95,6 +95,8 @@ Dewar.Mother LabVolume
 
 
 MDStrip3D                  ActiveDetector
+ActiveDetector.Named GeD_0
+
 
 ActiveDetector.DetectorVolume      D1_GeWafer
 ActiveDetector.SensitiveVolume     D1_GeWafer
