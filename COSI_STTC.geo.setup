@@ -15,7 +15,7 @@ Constant ZLabToDetectorCenter  0.413
 Volume LabVolume
 LabVolume.Material Air
 LabVolume.Visibility 0
-LabVolume.Shape Sphere 0.0 400.
+LabVolume.Shape Sphere 0.0 480.
 LabVolume.Position XLabToDetectorCenter  YLabToDetectorCenter  ZLabToDetectorCenter
 LabVolume.Mother WorldVolume
 
@@ -82,6 +82,10 @@ SideWallRight.Mother LabVolume
 SideWall.Copy SideWallLeft
 SideWallLeft.Position 0.0 -3.1115 0.0
 SideWallLeft.Mother LabVolume
+
+Include lab339.geo
+Lab339.Position { -XLabToDetectorCenter }  { -YLabToDetectorCenter }  { -ZLabToDetectorCenter }
+Lab339.Mother LabVolume
 
 # Finally Include the dewar
 Include dewar.geo
