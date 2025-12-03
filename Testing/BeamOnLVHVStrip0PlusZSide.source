@@ -1,0 +1,23 @@
+# Max is my default COSI-like quick sim. This is the source for it
+
+# Global parameters
+Version                   1
+Geometry                  ../View.COSISMEX.Ge.geo.setup
+
+# Physics list
+PhysicsListEM             LivermorePol
+
+# Output formats
+StoreSimulationInfo       all
+
+# Run & source parameters
+Run SpaceSim
+SpaceSim.FileName         COSI
+SpaceSim.NTriggers        100
+
+SpaceSim.Source Maxi
+Maxi.ParticleType         1
+Maxi.Beam                 HomogeneousBeam -3.4 -3.4 10  0 0 -1 0.1  
+Maxi.Spectrum             Mono 50
+Maxi.Flux                 1.0
+

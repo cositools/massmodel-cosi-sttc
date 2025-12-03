@@ -1,31 +1,31 @@
-# A single Germanium detector volume
+# A single Germanium detector volume in holder
 # COSI SMEX model
+# By Alyson
 
-#These constants were used to make the detector sit nicely in the mother volume
-#Constant Xshift -0.627
+# Identification tips:
+# High voltage board is (HVL1) orange'ish (Loc: +X, -Z in SMEX geometry)
+# Low voltage board is (LVL1) purple'ish (Loc: -Y, +Z in SMEX geometry)
+# Quick check: geomega -f ... -r HVL1 -r LVL1 -r D1_GeWafer
+
+
+
+#####################################################
+
+
+# These constants were used to make the detector sit nicely in the mother volume
 Constant Xshift 1.342
 Constant Yshift 0.991
-Constant Zshift -.4
+Constant Zshift -0.4
+
 
 #####################################################
 
 
 Volume SingleDetector
 SingleDetector.Material Vacuum
-#SingleDetector.Shape BRIK  5.3025  4.791  1.07
-#SingleDetector.Shape BRIK  7.7025  6.791  2.17
 SingleDetector.Shape BRIK  6.1225  5.791  {DetectorHalfHeight+.9}
 SingleDetector.Visibility 0
 SingleDetector.Virtual true
-
-#Shape BRIK GeWaferBlock
-#GeWaferBlock.Parameters DetectorHalfWidth DetectorHalfWidth DetectorHalfHeight
-
-#Shape TUBE WaferCutDisk
-#WaferCutDisk.Parameters 0.0 IngotRadius DetectorHalfHeight
-
-#Shape Intersection ActiveWafer
-#ActiveWafer.Parameters GeWaferBlock WaferCutDisk
 
 # Redoing this to follow EXACTLY what is done in special Max
 # Create the whole wafer
@@ -62,6 +62,7 @@ D1_GeWafer.Visibility 1
 D1_GeWafer.Color 4
 D1_GeWafer.Shape ActiveWafer
 #Come back and check this. Need to figure out where the 0,0 point is and what we are offsetting
+D1_GeWafer.Rotation 0 -180 0
 D1_GeWafer.Mother SingleDetector
 D1_GeWafer.Position {-0.6555+Xshift} {0.0+Yshift} {Zshift}
 
@@ -70,6 +71,7 @@ GeWaferGuardRing.Material active_ge_recoil
 GeWaferGuardRing.Visibility 1
 GeWaferGuardRing.Color 3
 GeWaferGuardRing.Shape GuardRing
+GeWaferGuardRing.Rotation 0 -180 0
 GeWaferGuardRing.Position  {-0.6555+Xshift} {0.0+Yshift} {Zshift}
 GeWaferGuardRing.Mother SingleDetector
 
@@ -539,6 +541,8 @@ LVFlexSmBlock2.Color 7
 LVFlexSmBlock2.Shape BRIK 0.163 0.2385 0.292
 LVFlexSmBlock2.Position {-4.6815+Xshift} {-6.5235+Yshift} {-0.1765+Zshift}
 
+
+
 ////////////////////////////////////////////////
 // High voltage boards
 ///////////////////////////////////////////////
@@ -659,6 +663,8 @@ HVFlexSmBlock2.Visibility 1
 HVFlexSmBlock2.Color 7
 HVFlexSmBlock2.Shape BRIK 0.2385 0.163 0.292
 HVFlexSmBlock2.Position {-7.2055+Xshift} {-3.952+Yshift} {0.1895+Zshift}
+
+
 
 // ************************************************
 //     Indium - approx of thermal joints

@@ -1,0 +1,31 @@
+# A single Germanium detector volume in holder
+# COSI SMEX model
+# By Alyson
+
+# Identification tips:
+# High voltage board is (HVL1) orange'ish (Loc: +X, -Z in SMEX geometry)
+# Low voltage board is (LVL1) purple'ish (Loc: -Y, +Z in SMEX geometry)
+# Quick check: geomega -f ... -r HVL1 -r LVL1 -r D1_GeWafer
+
+
+# Modifications to look at this volume by itself:
+Include COSISMEX.GlobalDimensions.geo
+Include Materials.geo
+Include COSI_STTC.Ge.det
+
+Constant DetectorHalfHeight { 1.52/2 }
+
+SingleDetector.Position { -0.6555+Xshift } -Yshift Zshift
+SingleDetector.Rotation 0 180 0
+SingleDetector.Mother World
+
+Volume World
+World.Material Vacuum
+World.Shape BRIK 10 10 10
+World.Position 0 0 0
+World.Mother 0
+
+Include COSISMEX.Ge.geo
+
+
+
