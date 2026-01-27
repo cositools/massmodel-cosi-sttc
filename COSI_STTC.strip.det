@@ -1,0 +1,68 @@
+#------------------------------------------------------------
+# Detector and trigger section:
+
+
+MDStrip3D                 GeD_0
+
+GeD_0.DetectorVolume      D1_GeWafer
+GeD_0.SensitiveVolume     D1_GeWafer
+
+#GeD_0.StructuralPitch    0.0   0.0    CryoTotalHeight
+#GeD_0.StructuralOffset   0.0   0.0    0.0
+
+GeD_0.Offset              0.0   0.0
+GeD_0.StripNumber         64    64
+
+GeD_0.NoiseThreshold      15
+GeD_0.TriggerThreshold    30
+
+GeD_0.DepthResolution     10  0.02
+GeD_0.DepthResolution     100  0.02
+GeD_0.DepthResolution     1000  0.02
+
+GeD_0.EnergyResolution Gaus 10      10        0.417
+GeD_0.EnergyResolution Gaus 20      20        0.425
+GeD_0.EnergyResolution Gaus 50      50        0.4375
+GeD_0.EnergyResolution Gaus 100     100       0.454
+GeD_0.EnergyResolution Gaus 200     200       0.492
+GeD_0.EnergyResolution Gaus 500     500       0.5875
+GeD_0.EnergyResolution Gaus 1000    1000      0.7217
+GeD_0.EnergyResolution Gaus 2000    2000      0.9317
+GeD_0.EnergyResolution Gaus 5000    5000      1.3819
+GeD_0.EnergyResolution Gaus 10000   10000     1.9094
+GeD_0.EnergyResolution Gaus 100000  100000    5.907
+
+GeD_0.FailureRate 0.0
+
+
+
+Simple GuardRingDetector
+
+GuardRingDetector.DetectorVolume      GeWaferGuardRing
+GuardRingDetector.SensitiveVolume     GeWaferGuardRing
+
+GuardRingDetector.TriggerThreshold      40
+GuardRingDetector.NoiseThresholdEqualsTriggerThreshold true
+
+GuardRingDetector.EnergyResolution Gaus 10      10        3
+GuardRingDetector.EnergyResolution Gaus 20      20        3
+GuardRingDetector.EnergyResolution Gaus 50      50        3
+GuardRingDetector.EnergyResolution Gaus 100     100       3
+GuardRingDetector.EnergyResolution Gaus 200     200       3
+GuardRingDetector.EnergyResolution Gaus 500     500       3
+GuardRingDetector.EnergyResolution Gaus 1000    1000      3
+GuardRingDetector.EnergyResolution Gaus 2000    2000      3
+GuardRingDetector.EnergyResolution Gaus 5000    5000      3
+
+
+
+// Trigger: at least one hit in one Germanium detector
+Trigger GeD_0Trigger
+GeD_0Trigger.Veto false
+GeD_0Trigger.TriggerByChannel true
+GeD_0Trigger.Detector GeD_0 1
+
+Trigger GuardRingVeto
+GuardRingVeto.Veto true
+GuardRingVeto.TriggerByChannel true
+GuardRingVeto.Detector GuardRingDetector 1
