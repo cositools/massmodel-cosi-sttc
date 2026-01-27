@@ -23,6 +23,24 @@ StandBaseSolo.Position 0.0 0.0 0.0
 StandBaseSolo.Mother StandBase
 StandBaseSolo.Visibility 1
 
+# Pegboard HV side
+Volume PegBoardLeft
+PegBoardLeft.Material Aluminium
+PegBoardLeft.Color 15
+PegBoardLeft.Shape BRIK 24.15 30.55 0.25
+PegBoardLeft.Position 0.0 37.0 7.326
+PegBoardLeft.Mother StandBase
+PegBoardLeft.Visibility 1
+
+# Pegboard LV side
+Volume PegBoardRight
+PegBoardRight.Material Aluminium
+PegBoardRight.Color 15
+PegBoardRight.Shape BRIK 24.15 30.55 0.25
+PegBoardRight.Position 0.0 -37.0 7.326
+PegBoardRight.Mother StandBase
+PegBoardRight.Visibility 1
+
 
 # Now making the shell front support
 Shape BRIK LowerBlockLSupport
