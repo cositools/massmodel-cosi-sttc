@@ -373,12 +373,19 @@ steel_304.ComponentByMass Ni 0.0925
 steel_304.ComponentByMass Fe 0.7062
 steel_304.ComponentByMass N 0.00055
 
+// Concrete (approximate G4_CONCRETE composition)
+Material Concrete
+Concrete.Density               2.3
+Concrete.ComponentByMass       O   0.52
+Concrete.ComponentByMass       Si  0.325
+Concrete.ComponentByMass       Ca  0.063
+Concrete.ComponentByMass       Al  0.02
+Concrete.ComponentByMass       Fe  0.01
+Concrete.ComponentByMass       H   0.01
 
-
-
-
-
-
-
-
-
+// Wood (for the table)
+Material Wood
+Wood.Density                 0.6
+Wood.ComponentByMass         C   0.50
+Wood.ComponentByMass         O   0.44
+Wood.ComponentByMass         H   0.06
